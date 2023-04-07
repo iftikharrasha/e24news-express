@@ -33,7 +33,7 @@ async function run() {
             }
           
             const cursor = allCollections.find(filter);
-            // const count = await cursor.countDocuments();
+            const count = await cursor.count();
           
             let collections;
             if (page) {
@@ -43,9 +43,10 @@ async function run() {
             }
           
             res.send({
+              count,
               collections
             });
-        });
+          });
 
         //Get Api for reviews
         app.get('/api/reviews', async (req, res) => {
