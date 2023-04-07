@@ -23,29 +23,28 @@ async function run() {
 
         //Get Api for collections
         app.get('/api/collections', async (req, res) => {
-            res.send('Server is loading on collection!');
-            // const filter = {};
-            // const page = req.query.page;
-            // const size = parseInt(req.query.size);
+            const filter = {};
+            const page = req.query.page;
+            const size = parseInt(req.query.size);
             
-            // // Check if the 'addedBy' query parameter is present in the request
-            // if (req.query.addedBy) {
-            //   filter.addedBy = req.query.addedBy;
-            // }
+            // Check if the 'addedBy' query parameter is present in the request
+            if (req.query.addedBy) {
+              filter.addedBy = req.query.addedBy;
+            }
           
-            // const cursor = allCollections.find(filter);
-            // // const count = await cursor.countDocuments();
+            const cursor = allCollections.find(filter);
+            // const count = await cursor.countDocuments();
           
-            // let collections;
-            // if (page) {
-            //   collections = await cursor.skip(page * size).limit(size).toArray();
-            // } else {
-            //   collections = await cursor.toArray();
-            // }
+            let collections;
+            if (page) {
+              collections = await cursor.skip(page * size).limit(size).toArray();
+            } else {
+              collections = await cursor.toArray();
+            }
           
-            // res.send({
-            //   collections
-            // });
+            res.send({
+              collections
+            });
         });
 
         //Get Api for reviews
