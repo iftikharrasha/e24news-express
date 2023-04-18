@@ -46,7 +46,13 @@ async function run() {
               count,
               collections
             });
-          });
+        });
+
+        // Get Api for my orders
+        app.get('/api/categories', async (req, res) => {
+            const categories = await allCollections.distinct("category");
+            res.send(categories);
+        })
 
         //Get Api for reviews
         app.get('/api/reviews', async (req, res) => {
